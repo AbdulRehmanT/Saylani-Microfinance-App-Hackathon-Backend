@@ -79,6 +79,24 @@ app.post('/api/v1/register', async (req, res) => {
     return res.status(500).json({ message: 'Failed to save registration data', error: error.message });
   }
 });
+
+app.post("/api/loanRequest", async (req, res) => {
+  try {
+    const loanRequestData = req.body;
+    
+    // Create a new LoanRequest document
+    const newLoanRequest = new LoanRequest(loanRequestData);
+
+    // Save it to the database
+    await newLoanRequest.save();
+
+    // Send a success response
+    res.status(201).json({ message: "Loan Request submitted successfully", loanRequest: newLoanRequest });
+  } catch (error) {
+    res.status(500).json({ message: "Error saving loan request", error });
+  }
+});
+
 app.use((request, response) => {
   response.status(404).send({ message: "no route found!" });
 });
