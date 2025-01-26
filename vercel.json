@@ -3,14 +3,14 @@
     "name": "Todo Backend",
     "builds": [
       {
-        "src": "index.mjs",
+        "src": "index.js",
         "use": "@vercel/node"
       }
     ],
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "/index.mjs"
+        "dest": "/index.js"
       }
     ]
   }
