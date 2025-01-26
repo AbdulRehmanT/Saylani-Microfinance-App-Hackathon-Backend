@@ -80,7 +80,7 @@ app.post('/api/v1/register', async (req, res) => {
   }
 });
 
-app.post("/api/loanRequest", async (req, res) => {
+app.post("/api/loan-request", async (req, res) => {
   try {
     const loanRequestData = req.body;
     
