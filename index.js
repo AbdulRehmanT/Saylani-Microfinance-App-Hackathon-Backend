@@ -3,6 +3,7 @@ import cors from "cors";
 import "dotenv/config";
 import "./database.js";
 import { Loan } from "./models/Loan.js";
+import { Registration } from "./models/User.js";
 const port = process.env.PORT || 4000;
 
 const app = express();
@@ -52,7 +53,6 @@ app.post("/api/v1/loan", async (req, res) => {
   }
 });
 
-
 app.post('/api/v1/register', async (req, res) => {
   const { cnic, email, name } = req.body;
 
@@ -63,7 +63,7 @@ app.post('/api/v1/register', async (req, res) => {
 
   try {
     // Save registration data to the database
-    const newRegistration = new Registration({
+    const newRegistration =new Registration({
       cnic,
       email,
       name,
@@ -75,11 +75,10 @@ app.post('/api/v1/register', async (req, res) => {
       registration: newRegistration,
     });
   } catch (error) {
-    console.error('Error saving registration data:', error);
-    return res.status(500).json({ message: 'Failed to save registration data' });
+    console.error('Error saving registration data:', error); // Detailed error log
+    return res.status(500).json({ message: 'Failed to save registration data', error: error.message });
   }
 });
-
 app.use((request, response) => {
   response.status(404).send({ message: "no route found!" });
 });

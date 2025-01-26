@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const mongodbUri = process.env.mongodbUri
+const mongodbUri='mongodb+srv://abdulrehman-admin:YcB6j4JXNhSlEtxx@cluster0.wevik.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
 
 const connectDB = async () => {
     try {
